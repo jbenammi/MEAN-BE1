@@ -1,0 +1,27 @@
+<nav>
+	<div  class="nav-wrapper green darken-4">
+		<a href="#/" class="brand-logo">MEAN Belt Exam</a>
+		<ul class="right">
+			<li><a href="#/dashboard">Cancel</a></li>
+		</ul>
+	</div>
+</nav>
+<div class="container">
+	<div class="section row" ng-controller='dashboardsController as DC'>
+		<h4>Create a new Poll</h4>
+		<h5>Put the question and options here:</h5>
+		<div class="col s6">
+			<label>Question</label>
+			<input type="text" ng-model='DC.newPoll.question' />
+			<label>Option 1</label>
+			<input type="text" ng-model='DC.newPoll.option_1.q_option' />
+			<label>Option 2</label>
+			<input type="text" ng-model='DC.newPoll.option_2.q_option' />
+			<label>Option 3</label>
+			<input type="text" ng-model='DC.newPoll.option_3.q_option' />
+			<label>Option 4</label>
+			<input type="text" ng-model='DC.newPoll.option_4.q_option' />
+			<button class="btn waves-effect waves-light" ng-click='DC.create()'>Submit</button>				
+		</div>
+	</div>
+</div>

@@ -1,0 +1,39 @@
+<nav ng-controller='usersController as UC'>
+	<div  class="nav-wrapper green darken-4">
+		<a href="#/" class="brand-logo">MEAN Belt Exam</a>
+		<ul class="right">
+			<li><a href="#/create">Create a New Poll</a></li>
+			<li ng-click='UC.logout()'><a >Logout</a></li>
+		</ul>
+	</div>
+</nav>
+<div class="container">
+	<div class="section row" ng-controller='dashboardsController as DC'>
+		<h4>Hello {{DC.user_session.name}}</h4>
+		<h5>Current Polls:</h5>
+		<div class="section"></div>
+		<div class="col s2 offset-s10">
+			<input type="text" ng-model='filter_search' placeholder="Search" />
+		</div>
+		<div class="col s12 section">
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Survey Question</th>
+						<th>Date Posted</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat='poll in DC.polls'>
+						<td>{{poll._user.name}}</td>
+						<td ng-click='DC.showPoll(poll._id)' class="blue-text"><u>{{poll.question}}</u></td>
+						<td>{{poll.createdAt | date: 'longDate'}}</td>
+						<td><span ng-if='(DC.user_session.name == poll._user.name)' ng-click='DC.delete(poll._id)' class="blue-text"><u>delete</u></span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

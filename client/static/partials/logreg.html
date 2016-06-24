@@ -1,0 +1,19 @@
+<nav ng-controller='usersController as UC'>
+	<div  class="nav-wrapper green darken-4">
+		<a href="#/" class="brand-logo">MEAN Belt Exam</a>
+		<ul class="right">
+
+		</ul>
+	</div>
+</nav>
+<div class="container">
+	<div class="section row" ng-controller='usersController as UC'>
+		<h4>Hello and Welcome to the Polls Board!</h4>
+		<h5>Please enter your name to join and share your polls and vote with others.</h5>
+		<div class="section"></div>
+		<div class="col s6 section">
+			<input type="text" ng-model='UC.chkuser.name' placeholder="Enter your name" />
+			<button class="btn waves-effect waves-light green right" ng-click='UC.login()'>Login</button>
+		</div>
+	</div>
+</div>

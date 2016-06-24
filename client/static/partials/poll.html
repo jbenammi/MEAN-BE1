@@ -1,0 +1,30 @@
+<nav>
+	<div  class="nav-wrapper green darken-4">
+		<a href="#/" class="brand-logo">MEAN Belt Exam</a>
+		<ul class="right">
+			<li><a href="#/dashboard">Go to Polls</a></li>
+		</ul>
+	</div>
+</nav>
+<div class="container">
+<div class="section row" ng-controller='pollsController as PC'>
+		<h4>{{PC.poll.question}}</h4>
+		<h5>Click the voke button to choose one:</h5>
+		<table>
+			<thead>
+				<tr>
+					<th>Option</th>
+					<th>Current Count of Votes</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat='opt in PC.poll._options'>
+					<th>{{opt.p_option}}</th>
+					<th>{{opt.vote}}</th>
+					<th>{{opt._id}}</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
