@@ -25,7 +25,7 @@ module.exports = function(){
 		polls.showOne(request, response);
 	});
 
-	app.delete('/polls', function(request, response){
+	app.delete('/polls/:id', function(request, response){
 		polls.delete(request, response);
 	});
 

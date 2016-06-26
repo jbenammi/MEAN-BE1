@@ -3,18 +3,15 @@ myApp.factory('pollFactory', function($http){
 	var poll_id;
 
 	factory.create = function(newpoll, callback){
-		console.log(newpoll);
 		newpoll.option_1.vote = 0
 		newpoll.option_2.vote = 0
 		newpoll.option_3.vote = 0
 		newpoll.option_4.vote = 0
-		console.log(newpoll);
 		$http.post('/polls', newpoll).success(function(fromDB){
 			if(fromDB.errors){
 				console.log(fromDB.errors);
 			}
 			else{
-				console.log(fromDB)
 				callback()
 			}
 		})
@@ -42,8 +39,8 @@ myApp.factory('pollFactory', function($http){
 		})
 	}
 
-	factory.delete = function(id, callback){
-		$http.delete('/polls', id).success(function(fromDB){
+	factory.delete = function(poll_id, callback){
+		$http.delete('/polls/' + poll_id._id).success(function(fromDB){
 			if(fromDB.errors){
 				console.log(fromDB.errors);
 			}

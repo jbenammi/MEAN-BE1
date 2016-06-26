@@ -13,7 +13,7 @@
 		<h5>Current Polls:</h5>
 		<div class="section"></div>
 		<div class="col s2 offset-s10">
-			<input type="text" ng-model='filter_search' placeholder="Search" />
+			<input type="text" ng-model='filter_question' placeholder="Search" />
 		</div>
 		<div class="col s12 section">
 			<table>
@@ -26,11 +26,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat='poll in DC.polls'>
+					<tr ng-repeat='poll in DC.polls | filter: filter_question'>
 						<td>{{poll._user.name}}</td>
-						<td ng-click='DC.showPoll(poll._id)' class="blue-text"><u>{{poll.question}}</u></td>
+						<td ng-click='DC.showPoll(poll._id)' class="blue-text"><u class="pointer">{{poll.question}}</u></td>
 						<td>{{poll.createdAt | date: 'longDate'}}</td>
-						<td><span ng-if='(DC.user_session.name == poll._user.name)' ng-click='DC.delete(poll._id)' class="blue-text"><u>delete</u></span></td>
+						<td ng-if='DC.user_session.name == poll._user.name'><span ng-click='DC.delete(poll._id)' class="blue-text pointer"><u>delete</u></span></td>
 					</tr>
 				</tbody>
 			</table>

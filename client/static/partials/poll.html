@@ -8,8 +8,8 @@
 </nav>
 <div class="container">
 <div class="section row" ng-controller='pollsController as PC'>
-		<h4>{{PC.poll.question}}</h4>
-		<h5>Click the voke button to choose one:</h5>
+		<h4 class="blue-text">{{PC.poll.question}}</h4>
+		<h5>Click the vote button to choose one:</h5>
 		<table>
 			<thead>
 				<tr>
@@ -20,9 +20,9 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat='opt in PC.poll._options'>
-					<th>{{opt.p_option}}</th>
+					<th>{{opt.q_option}}</th>
 					<th>{{opt.vote}}</th>
-					<th>{{opt._id}}</th>
+					<th><button class="btn waves-effect waves-light green darken-1" ng-click='PC.vote(opt._id)'>Submit</button</th>
 				</tr>
 			</tbody>
 		</table>

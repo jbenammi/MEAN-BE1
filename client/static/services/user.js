@@ -8,7 +8,6 @@ myApp.factory('userFactory', function($http){
 	}
 
 	factory.login = function(user, callback){
-		console.log(user);
 		$http.post('/users', user).success(function(fromDB){
 			if(fromDB.success){
 				user_session = fromDB

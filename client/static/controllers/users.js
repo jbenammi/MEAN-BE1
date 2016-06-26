@@ -11,7 +11,6 @@ myApp.controller('usersController', function(userFactory, $location){
 	});
 
 	self.login = function(){
-		console.log(self.chkuser);
 		userFactory.login(self.chkuser, function(factoryUser_Session){
 			self.user_session = factoryUser_Session
 			$location.url('/dashboard');

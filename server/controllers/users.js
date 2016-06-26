@@ -16,14 +16,12 @@ module.exports = {
 					}
 					else{
 						var logged_user = {name: newUser.name, _id: newUser._id, success: true};
-						console.log('made new user', logged_user);
 						response.json(logged_user);
 					}
 				})
 			}
 			else{
 				var logged_user = {name: fromDB.name, _id: fromDB._id, success: true};
-				console.log('logging in user', logged_user);
 				response.json(logged_user);			}
 		})
 	}

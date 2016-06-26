@@ -30,7 +30,12 @@ myApp.controller('dashboardsController', function(userFactory, pollFactory, $loc
 		})
 	}
 
-	self.delete = function(id){
-		// pollFactory.delete(id, function())
+	self.delete = function(id, callback){
+		var poll_id = {_id: id}
+		pollFactory.delete(poll_id, function(){
+			pollFactory.showAll(function(factoryPolls){
+				self.polls = factoryPolls;
+			})			
+		})
 	}
 })

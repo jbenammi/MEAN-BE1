@@ -1,88 +1,76 @@
 var Poll = mongoose.model('polls');
 var User = mongoose.model('users');
 var Option = mongoose.model('options');
+var bodyParser = require('body-parser');
 
 module.exports = {
 	//This function will create a new poll and imediately embed all the options associated with that poll.
 	create: function(request, response){
-		console.log(request.body);
 		var pollInfo = {question: request.body.question, _user: request.body._user}
 		var newPoll = new Poll(pollInfo)
 		newPoll.save(function(err){
-			console.log(newPoll);
 			if(err){
 				response.json({errors: err});
 			}
 			else{
-					var optInfo1 = request.body.option_1
-					var newOpt1 = new Option(optInfo1);
-					newOpt1.save(function(err){
-						if(err){
-							console.log(err)
-						}
-					})
-					newPoll._options.push(newOpt1._id);
-					newPoll.save(function(err){
-						if(err){
-							console.log(err)
-						}
-					})
-					var optInfo2 = request.body.option_2
-					var newOpt2 = new Option(optInfo2);
-					newOpt2.save(function(err){
-						if(err){
-							console.log(err)
-						}
-					})
-					newPoll._options.push(newOpt2._id);
-					newPoll.save(function(err){
-						if(err){
-							console.log(err)
-						}
-					})
-					var optInfo3 = request.body.option_3
-					var newOpt3 = new Option(optInfo1);
-					newOpt3.save(function(err){
-						if(err){
-							console.log(err)
-						}
-					})
-					newPoll._options.push(newOpt3._id);
-					newPoll.save(function(err){
-						if(err){
-							console.log(err)
-						}
-					})
-					var optInfo4 = request.body.option_4
-					var newOpt4 = new Option(optInfo4);
-					newOpt4.save(function(err){
-						if(err){
-							console.log(err)
-						}
-					})
-					newPoll._options.push(newOpt4._id);
-					newPoll.save(function(err){
-						if(err){
-							console.log(err)
-						}
-					})	
-					console.log('after pushes', newPoll)														
-
-				User.findOne({_id: request.body._user}, function(err, user){
+				var newOpt1 = new Option(request.body.option_1);
+				newOpt1.save(function(err){
 					if(err){
 						response.json({errors: err});
 					}
 					else{
-						user._polls.push(newPoll._id);
-						user.save(function(err){
-							if (err) {
+						var newOpt2 = new Option(request.body.option_2);
+						newOpt2.save(function(err){
+							if(err){
 								response.json({errors: err});
 							}
 							else{
-								response.json({success: true});
+								var newOpt3 = new Option(request.body.option_3);
+								newOpt3.save(function(err){
+									if(err){
+										response.json({errors: err});
+									}
+									else{
+										var newOpt4 = new Option(request.body.option_4);
+										newOpt4.save(function(err){
+											if(err){
+												response.json({errors: err});
+											}
+											else{
+												newPoll._options.push(newOpt1._id);
+												newPoll._options.push(newOpt2._id);
+												newPoll._options.push(newOpt3._id);
+												newPoll._options.push(newOpt4._id);
+												newPoll.save(function(err){
+													if(err){
+														response.json({errors: err});
+													}
+													else{
+														User.findOne({_id: request.body._user}, function(err, user){
+															if(err){
+																response.json({errors: err});
+															}
+															else{
+																user._polls.push(newPoll._id);
+																user.save(function(err){
+																	if (err) {
+																		response.json({errors: err});
+																	}
+																	else{
+																		response.json({success: true});
+																	}
+																})
+															}
+														})
+													}
+												})
+											}
+										})
+									}
+								})
 							}
 						})
-					}
+					}															
 				})
 			}
 		})
@@ -109,9 +97,8 @@ module.exports = {
 			}
 		})
 	},
-
 	delete: function(request, response){
-		Poll.remove({_id: request.body._id}, function(err){
+		Poll.remove({_id: request.params.id}, function(err){
 			if (err) {
 				response.json({errors: err});
 			}

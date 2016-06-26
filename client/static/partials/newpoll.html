@@ -11,17 +11,29 @@
 		<h4>Create a new Poll</h4>
 		<h5>Put the question and options here:</h5>
 		<div class="col s6">
+		<form name="pollForm" ng-model='DC.newPoll'>	
 			<label>Question</label>
-			<input type="text" ng-model='DC.newPoll.question' />
+			<label class="red-text" ng-show='pollForm.question.$touched && pollForm.question.$error.minlength'>The question must be at least 6 characters</label>
+			<label class="red-text" ng-show='pollForm.question.$touched && pollForm.question.$error.required'>The question is required</label>
+			<input type="text" name='question' ng-model='DC.newPoll.question' ng-minlength='6' required />
 			<label>Option 1</label>
-			<input type="text" ng-model='DC.newPoll.option_1.q_option' />
+			<label class="red-text" ng-show='pollForm.op1.$touched && pollForm.op1.$error.minlength'>The option must be at least 3 characters</label>
+			<label class="red-text" ng-show='pollForm.op1.$touched && pollForm.op1.$error.required'>The option is required</label>
+			<input type="text" name="op1" ng-model='DC.newPoll.option_1.q_option' ng-minlength='3' required/>
 			<label>Option 2</label>
-			<input type="text" ng-model='DC.newPoll.option_2.q_option' />
+			<label class="red-text" ng-show='pollForm.op2.$touched && pollForm.op2.$error.minlength'>The option must be at least 3 characters</label>
+			<label class="red-text" ng-show='pollForm.op2.$touched && pollForm.op2.$error.required'>The option is required</label>
+			<input type="text" name="op2" ng-model='DC.newPoll.option_2.q_option' ng-minlength='3' required/>
 			<label>Option 3</label>
-			<input type="text" ng-model='DC.newPoll.option_3.q_option' />
+			<label class="red-text" ng-show='pollForm.op3.$touched && pollForm.op3.$error.minlength'>The option must be at least 3 characters</label>
+			<label class="red-text" ng-show='pollForm.op3.$touched && pollForm.op3.$error.required'>The option is required</label>
+			<input type="text" name="op3" ng-model='DC.newPoll.option_3.q_option' ng-minlength='3' required/>
 			<label>Option 4</label>
-			<input type="text" ng-model='DC.newPoll.option_4.q_option' />
-			<button class="btn waves-effect waves-light" ng-click='DC.create()'>Submit</button>				
+			<label class="red-text" ng-show='pollForm.op4.$touched && pollForm.op4.$error.minlength'>The option must be at least 3 characters</label>
+			<label class="red-text" ng-show='pollForm.op4.$touched && pollForm.op4.$error.required'>The option is required</label>
+			<input type="text" name="op4" ng-model='DC.newPoll.option_4.q_option' ng-minlength='3' required />
+			<button ng-if='pollForm.$valid' class="btn waves-effect waves-light" ng-click='DC.create()'>Submit</button>
+		</form>			
 		</div>
 	</div>
 </div>
